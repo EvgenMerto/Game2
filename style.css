@@ -36,3 +36,13 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+#boss-battle-screen h1 {
+    animation: blink 1s infinite alternate;
+    font-size: 48px;
+}
+
+@keyframes blink {
+    from { color: red; }
+    to { color: black; }
+}
