@@ -31,7 +31,7 @@
             <h1>Битва!</h1>
             <p>Ваш герой сражается с врагом.</p>
             <button onclick="attackEnemy()">Атакуйте врага</button>
-            <p id="battle-log"></p>
+            <pre id="battle-log"></pre>
         </div>
         
         <!-- Конец игры -->
@@ -39,6 +39,11 @@
             <h1>Поздравления!</h1>
             <p>Вы победили босса и спасли мир!</p>
             <button onclick="restartGame()">Начать заново</button>
+        </div>
+        
+        <!-- Экран битвы с боссом -->
+        <div id="boss-battle-screen" class="screen hidden">
+            <h1 style="color: red;">В бой!</h1>
         </div>
     </div>
     
