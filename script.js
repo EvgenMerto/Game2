@@ -56,6 +56,7 @@ const enemies = {
 // Функции игры
 function selectHero(type) {
     hero = Object.assign({}, heroes[type]); // Копируем объект героя
+    hideScreen('start-screen'); // Убираем экран выбора героя
     showScreen('equipment-screen'); // Переход к выбору снаряжения
 }
 
@@ -92,12 +93,12 @@ function attackEnemy() {
     } else {
         const damage = Math.max(0, hero.strength - enemy.defense);
         enemy.health -= damage;
-        logMessage(`${hero.name} нанес ${damage} урона ${enemy.name}. Осталось здоровья: ${enemy.health}`);
+        logMessage(`${hero.name} нанес ${damage} урона ${enemy.name}.\nОсталось здоровья: ${enemy.health}`);
 
         if (enemy.health > 0) {
             const enemyDamage = Math.max(0, enemy.strength - hero.defense);
             hero.health -= enemyDamage;
-            logMessage(`${enemy.name} нанес ${enemyDamage} урона ${hero.name}. Осталось здоровья: ${hero.health}`);
+            logMessage(`${enemy.name} нанес ${enemyDamage} урона ${hero.name}.\nОсталось здоровья: ${hero.health}`);
 
             if (hero.health <= 0) {
                 endGame(false); // Поражение
@@ -110,8 +111,15 @@ function nextEnemy() {
     if (enemy === enemies.goblin) {
         startBattle(enemies.troll); // Следующий враг - тролль
     } else if (enemy === enemies.troll) {
-        startBattle(enemies.boss); // Последний враг - главный босс
+        startBossBattle(); // Последний враг - главный босс
     }
+}
+
+function startBossBattle() {
+    showScreen('boss-battle-screen'); // Переход к экрану битвы с боссом
+    setTimeout(() => {
+        startBattle(enemies.boss); // Начинаем битву с главным боссом
+    }, 3000); // Задержка перед началом битвы с боссом
 }
 
 function endGame(victory) {
@@ -137,7 +145,11 @@ function showScreen(screenId) {
     document.getElementById(screenId).classList.remove('hidden');
 }
 
+function hideScreen(screenId) {
+    document.getElementById(screenId).classList.add('hidden');
+}
+
 function logMessage(message) {
     const battleLog = document.getElementById('battle-log');
-    battleLog.textContent += `${message}\n`;
+    battleLog.textContent += `${message}\n\n`;
 }
