@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приключения Героя</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game">
+        <!-- Начальный экран -->
+        <div id="start-screen" class="screen">
+            <h1>Добро пожаловать в Приключения Героя!</h1>
+            <p>Выберите своего героя:</p>
+            <button onclick="selectHero('warrior')">Воин</button>
+            <button onclick="selectHero('mage')">Маг</button>
+            <button onclick="selectHero('archer')">Лучник</button>
+        </div>
+        
+        <!-- Экран выбора снаряжения -->
+        <div id="equipment-screen" class="screen hidden">
+            <h1>Выбор снаряжения</h1>
+            <p>Выберите одно улучшение для вашего героя:</p>
+            <button onclick="upgradeEquipment('weapon')">Оружие (+10 силы)</button>
+            <button onclick="upgradeEquipment('armor')">Броня (+10 защиты)</button>
+            <button onclick="upgradeEquipment('health')">Здоровье (+50 HP)</button>
+        </div>
+        
+        <!-- Экран битвы -->
+        <div id="battle-screen" class="screen hidden">
+            <h1>Битва!</h1>
+            <p>Ваш герой сражается с врагом.</p>
+            <button onclick="attackEnemy()">Атакуйте врага</button>
+            <p id="battle-log"></p>
+        </div>
+        
+        <!-- Конец игры -->
+        <div id="end-screen" class="screen hidden">
+            <h1>Поздравления!</h1>
+            <p>Вы победили босса и спасли мир!</p>
+            <button onclick="restartGame()">Начать заново</button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
